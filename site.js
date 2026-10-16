@@ -171,6 +171,30 @@
     });
   }
 
+  /* ---------- Intro beim Öffnen der Startseite ---------- */
+  var intro = document.getElementById('siteIntro');
+  if (intro) {
+    var seen = false;
+    try { seen = sessionStorage.getItem('ms-intro') === '1'; } catch (err) { seen = false; }
+    if (seen) {
+      intro.parentNode.removeChild(intro);
+    } else {
+      try { sessionStorage.setItem('ms-intro', '1'); } catch (err) {}
+      var closeIntro = function () {
+        if (intro.classList.contains('done')) return;
+        intro.classList.add('done');
+        window.setTimeout(function () {
+          if (intro.parentNode) intro.parentNode.removeChild(intro);
+        }, 220);
+      };
+      var skipButton = intro.querySelector('.intro-skip');
+      if (skipButton) skipButton.addEventListener('click', function (e) { e.stopPropagation(); closeIntro(); });
+      intro.addEventListener('click', closeIntro);
+      document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeIntro(); });
+      window.setTimeout(closeIntro, 3000);
+    }
+  }
+
   /* ---------- Jahr im Footer ---------- */
   var year = String(new Date().getFullYear());
   document.querySelectorAll('[data-year]').forEach(function (el) { el.textContent = year; });
