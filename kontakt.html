@@ -1,0 +1,198 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kontakt &amp; Angebot anfordern | Montageservice Süd</title>
+<meta name="description" content="Anfrage an Montageservice Süd: Formular ausfüllen oder direkt anrufen. Rückmeldung mit festem Preis und Terminvorschlag.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23f7f7f5'/%3E%3Cpath d='M8 30 32 12l24 18-3 4-21-16-21 16z' fill='%23e30613'/%3E%3Cpath d='M18 36h5v16h-5zM41 36h5v16h-5zM24 40h16v4H24z' fill='%2315181c'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="styles.css">
+<script src="site.js" defer></script>
+</head>
+<body>
+
+<a class="skip-link" href="#main">Zum Inhalt springen</a>
+
+<header class="site-header">
+  <div class="header-inner">
+    <a class="brand" href="index.html" aria-label="Montageservice Süd Startseite">
+      <img src="assets/ms-logo.png" alt="Montageservice Süd – Geschäftszweig der GUSS-SOLUTIONS">
+    </a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="main-navigation" aria-label="Navigation öffnen">
+      <span></span><span></span><span></span>
+    </button>
+    <nav class="main-nav" id="main-navigation" aria-label="Hauptnavigation">
+      <ul class="nav-list">
+        <li><a class="nav-link" href="index.html">Startseite</a></li>
+        <li><a class="nav-link" href="leistungen.html">Leistungen</a></li>
+        <li><a class="nav-link" href="ueber-uns.html">Über uns</a></li>
+        <li><a class="nav-link" href="kontakt.html" aria-current="page">Kontakt</a></li>
+      </ul>
+    </nav>
+    <a class="button header-cta" href="tel:+4915773806320">Anrufen</a>
+  </div>
+</header>
+
+<div class="proto-note">Prototyp zur Ansicht – das Formular prüft die Eingaben, versendet aber noch nichts. Kontaktdaten sind Platzhalter.</div>
+
+<main id="main">
+
+  <nav class="breadcrumb" aria-label="Brotkrumen">
+    <a href="index.html">Startseite</a><span>Kontakt</span>
+  </nav>
+
+  <section class="page-hero" style="padding-bottom:0">
+    <div class="inner" style="grid-template-columns:1fr;max-width:var(--content)">
+      <div class="reveal" style="max-width:760px">
+        <span class="kicker">Kontakt</span>
+        <h1>Was steht bei Ihnen an?</h1>
+        <p class="lead">Schreiben Sie zwei Sätze zur Aufgabe – wir melden uns mit einem Terminvorschlag und einem festen Preis. Wer schnell eine Antwort braucht, greift am besten zum Telefon.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-tight">
+    <div class="wrap contact-grid">
+
+      <div class="contact-info reveal">
+        <h2>Direkter Draht</h2>
+        <ul>
+          <li><span class="label">Telefon</span><a href="tel:+4915773806320">01577 3806320</a></li>
+          <li><span class="label">E-Mail</span><a href="mailto:info@guss-solutions.de">info@guss-solutions.de</a></li>
+          <li><span class="label">Anschrift</span>Lärchenstraße 23<br>89555 Steinheim am Albuch</li>
+          <li><span class="label">Erreichbarkeit</span>Montag bis Freitag<br>Kurzfristige Termine nach Absprache</li>
+          <li><span class="label">Mutterunternehmen</span><a href="https://guss-solutions.de" target="_blank" rel="noopener">GUSS-SOLUTIONS</a></li>
+        </ul>
+      </div>
+
+      <div class="form-card reveal">
+        <h2 style="margin-bottom:.6rem">Anfrage senden</h2>
+        <p class="lead" style="font-size:1rem;margin-bottom:1.4rem">Felder mit <span style="color:var(--red);font-weight:800">*</span> sind Pflichtfelder.</p>
+
+        <form class="form" data-prototype-form novalidate>
+          <div class="field">
+            <label for="name">Name <span class="req">*</span></label>
+            <input id="name" name="name" type="text" required placeholder="Vor- und Nachname">
+            <span class="field-error">Bitte geben Sie Ihren Namen an.</span>
+          </div>
+          <div class="field">
+            <label for="telefon">Telefon <span class="req">*</span></label>
+            <input id="telefon" name="telefon" type="tel" required placeholder="Für den Rückruf">
+            <span class="field-error">Bitte geben Sie eine erreichbare Telefonnummer an.</span>
+          </div>
+          <div class="field">
+            <label for="email">E-Mail</label>
+            <input id="email" name="email" type="email" placeholder="name@beispiel.de">
+            <span class="field-error">Diese E-Mail-Adresse sieht nicht korrekt aus.</span>
+          </div>
+          <div class="field">
+            <label for="ort">Ort / PLZ <span class="req">*</span></label>
+            <input id="ort" name="ort" type="text" required placeholder="Wo ist die Aufgabe?">
+            <span class="field-error">Bitte geben Sie den Einsatzort an.</span>
+          </div>
+          <div class="field full">
+            <label for="leistung">Gewünschte Leistung</label>
+            <select id="leistung" name="leistung">
+              <option value="">Bitte wählen</option>
+              <option>Montage Möbel aller Hersteller</option>
+              <option>Innenausbau nach Absprache</option>
+              <option>Reparaturen im Haus</option>
+              <option>Reparaturen ums Haus</option>
+              <option>Unterstützung im Garten</option>
+              <option>Handwerkliche Dienstleistungen</option>
+              <option>Entrümpelung</option>
+              <option>Umzüge</option>
+              <option>Reinigung allgemein</option>
+              <option>Reinigung Garten</option>
+              <option>Mehrere Leistungen</option>
+            </select>
+          </div>
+          <div class="field full">
+            <label for="nachricht">Ihre Aufgabe <span class="req">*</span></label>
+            <textarea id="nachricht" name="nachricht" required placeholder="Was soll gemacht werden? Umfang, gewünschter Zeitraum, Besonderheiten"></textarea>
+            <span class="field-error">Bitte beschreiben Sie kurz, worum es geht.</span>
+          </div>
+          <div class="field full">
+            <label class="checkbox" for="datenschutz">
+              <input id="datenschutz" name="datenschutz" type="checkbox" required>
+              <span>Ich bin damit einverstanden, dass meine Angaben zur Bearbeitung der Anfrage gespeichert werden. <span class="req">*</span></span>
+            </label>
+            <span class="field-error">Bitte bestätigen Sie die Datenschutzhinweise.</span>
+          </div>
+          <div class="full">
+            <button class="button button-lg button-block" type="submit">Anfrage senden</button>
+            <p class="form-note">Im Prototyp wird nichts versendet. Im Livebetrieb geht die Anfrage per E-Mail an Montageservice Süd.</p>
+          </div>
+          <div class="form-status full" role="status" aria-live="polite"></div>
+        </form>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="section section-white">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="kicker">Gut zu wissen</span>
+        <h2>Vor Ihrer Anfrage</h2>
+      </div>
+      <div class="faq">
+        <details open><summary>Was hilft uns, schnell ein Angebot zu machen?</summary><p>Ein Foto der Aufgabe, der ungefähre Umfang (z. B. „vier Schränke“) und Ihr Wunschzeitraum. Damit können wir meist direkt einen Festpreis nennen.</p></details>
+        <details><summary>Wann melden Sie sich zurück?</summary><p>In der Regel innerhalb von 24 Stunden an Werktagen. Bei dringenden Fällen rufen Sie bitte direkt an.</p></details>
+        <details><summary>Ist die Anfrage verbindlich?</summary><p>Nein. Anfrage und Angebot sind kostenlos und unverbindlich.</p></details>
+        <details><summary>Arbeiten Sie auch außerhalb der genannten Region?</summary><p>Sprechen Sie uns an – je nach Umfang prüfen wir auch weitere Entfernungen.</p></details>
+      </div>
+    </div>
+  </section>
+
+  <div class="wrap">
+    <section class="cta red reveal">
+      <div>
+        <h2>Lieber direkt sprechen?</h2>
+        <p>Ein Anruf klärt meist schneller als zehn E-Mails – auch für kleine Aufträge.</p>
+      </div>
+      <a class="button button-lg button-dark" href="tel:+4915773806320">01577 3806320</a>
+    </section>
+  </div>
+
+</main>
+
+<footer class="site-footer">
+  <div class="footer-main">
+    <div>
+      <img class="footer-logo" src="assets/ms-logo.png" alt="Montageservice Süd">
+      <p class="footer-copy">Montage, Reparaturen, Umzüge, Entrümpelung und Reinigung – der Servicebereich der GUSS-SOLUTIONS.</p>
+    </div>
+    <div>
+      <h2 class="footer-title">Kontakt</h2>
+      <ul class="footer-links">
+        <li><a href="tel:+4915773806320">01577 3806320</a></li>
+        <li><a href="mailto:info@guss-solutions.de">info@guss-solutions.de</a></li>
+        <li>Lärchenstraße 23<br>89555 Steinheim am Albuch</li>
+      </ul>
+    </div>
+    <div>
+      <h2 class="footer-title">Seiten</h2>
+      <ul class="footer-links">
+        <li><a href="index.html">Startseite</a></li>
+        <li><a href="leistungen.html">Leistungen</a></li>
+        <li><a href="ueber-uns.html">Über uns</a></li>
+        <li><a href="kontakt.html">Kontakt</a></li>
+      </ul>
+    </div>
+    <div>
+      <h2 class="footer-title">Rechtliches</h2>
+      <ul class="footer-links">
+        <li><a href="impressum.html">Impressum</a></li>
+        <li><a href="datenschutz.html">Datenschutz</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© <span data-year>2026</span> Montageservice Süd · Geschäftszweig der GUSS-SOLUTIONS</span>
+    <span>Prototyp · Inhalte zur Freigabe</span>
+  </div>
+</footer>
+
+</body>
+</html>
