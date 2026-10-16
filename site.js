@@ -171,15 +171,18 @@
     });
   }
 
-  /* ---------- Intro beim Öffnen der Startseite ---------- */
+  /* ---------- Intro beim Öffnen der Website ---------- */
   var intro = document.getElementById('siteIntro');
   if (intro) {
-    var seen = false;
-    try { seen = sessionStorage.getItem('ms-intro') === '1'; } catch (err) { seen = false; }
-    if (seen) {
+    var introTag = new Date().toISOString().slice(0, 10);
+    var introSeen = null;
+    var introForce = window.location.search.indexOf('intro=1') !== -1;
+    try { introSeen = localStorage.getItem('ms-intro-tag'); } catch (err) { introSeen = null; }
+
+    if (!introForce && introSeen === introTag) {
       intro.parentNode.removeChild(intro);
     } else {
-      try { sessionStorage.setItem('ms-intro', '1'); } catch (err) {}
+      try { localStorage.setItem('ms-intro-tag', introTag); } catch (err) {}
       var closeIntro = function () {
         if (intro.classList.contains('done')) return;
         intro.classList.add('done');
