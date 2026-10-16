@@ -176,13 +176,21 @@
   if (intro) {
     var introTag = new Date().toISOString().slice(0, 10);
     var introSeen = null;
+    var introSessionSeen = null;
     var introForce = window.location.search.indexOf('intro=1') !== -1;
-    try { introSeen = localStorage.getItem('ms-intro-tag'); } catch (err) { introSeen = null; }
+    try {
+      introSeen = localStorage.getItem('ms-intro-tag');
+      introSessionSeen = sessionStorage.getItem('ms-intro-session');
+    } catch (err) { introSeen = null; introSessionSeen = null; }
 
-    if (!introForce && introSeen === introTag) {
+    /* Nur beim ersten Aufruf der Website, nicht beim Wechsel der Menüpunkte */
+    if (!introForce && (introSeen === introTag || introSessionSeen === introTag)) {
       intro.parentNode.removeChild(intro);
     } else {
-      try { localStorage.setItem('ms-intro-tag', introTag); } catch (err) {}
+      try {
+        localStorage.setItem('ms-intro-tag', introTag);
+        sessionStorage.setItem('ms-intro-session', introTag);
+      } catch (err) {}
       var closeIntro = function () {
         if (intro.classList.contains('done')) return;
         intro.classList.add('done');
