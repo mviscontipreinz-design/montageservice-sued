@@ -361,28 +361,43 @@ textarea{resize:vertical;min-height:120px}
 
 /* ---------- Intro beim Öffnen der Startseite ---------- */
 .site-intro{position:fixed;inset:0;z-index:9999;display:grid;place-items:center;overflow:hidden;
-  background:radial-gradient(120% 90% at 50% 40%,#ffffff 0%,#f7f7f5 55%,#eeede8 100%);
-  animation:introOut .5s ease 2.5s forwards}
-.site-intro::before{content:"";position:absolute;width:min(780px,88vw);aspect-ratio:1;border-radius:50%;
-  background:radial-gradient(circle,rgba(227,6,19,.12) 0%,rgba(227,6,19,0) 62%);
-  animation:introHalo 2.6s ease-out both}
+  background:radial-gradient(120% 90% at 50% 40%,#ffffff 0%,#f8f8f6 55%,#eeece6 100%);
+  animation:introOut .5s ease 2.95s forwards}
+.site-intro::before{content:"";position:absolute;width:min(820px,92vw);aspect-ratio:1;border-radius:50%;
+  background:radial-gradient(circle,rgba(227,6,19,.13) 0%,rgba(227,6,19,0) 62%);
+  animation:introHalo 3s ease-out both}
+.site-intro::after{content:"";position:absolute;inset:0;opacity:.06;
+  background-image:radial-gradient(#15181c 1px,transparent 1px);background-size:26px 26px;
+  -webkit-mask-image:radial-gradient(92% 72% at 50% 46%,#000 18%,transparent 78%);
+  mask-image:radial-gradient(92% 72% at 50% 46%,#000 18%,transparent 78%);
+  animation:introGrid 3s ease-out both}
 .intro-inner{position:relative;text-align:center;padding:24px}
 .intro-logo{position:relative;display:inline-block;border-radius:20px;background:#fff;padding:18px 24px;
   overflow:hidden;box-shadow:0 22px 60px rgba(21,24,28,.14),0 2px 6px rgba(21,24,28,.06);
   animation:introLogo .95s cubic-bezier(.16,.84,.28,1) both}
 .intro-logo img{display:block;width:min(420px,68vw);height:auto}
 .intro-shine{position:absolute;top:-60%;left:-45%;width:45%;height:220%;transform:rotate(18deg);
-  background:linear-gradient(90deg,rgba(255,255,255,0) 0%,rgba(255,255,255,.85) 50%,rgba(255,255,255,0) 100%);
+  background:linear-gradient(90deg,rgba(255,255,255,0) 0%,rgba(255,255,255,.88) 50%,rgba(255,255,255,0) 100%);
   animation:introShine 1.25s ease-in-out .55s both}
 .intro-claim{margin:26px 0 0;font-weight:800;letter-spacing:.01em;color:#15181c;
   font-size:clamp(1.05rem,2.7vw,1.3rem)}
 .intro-claim span{display:inline-block;animation:introWord .7s cubic-bezier(.16,.84,.28,1) both}
-.intro-claim span:nth-child(1){animation-delay:.35s}
-.intro-claim span:nth-child(2){animation-delay:.47s}
-.intro-claim span:nth-child(3){animation-delay:.59s;color:#e30613}
+.intro-claim span:nth-child(1){animation-delay:1.15s}
+.intro-claim span:nth-child(2){animation-delay:1.27s}
+.intro-claim span:nth-child(3){animation-delay:1.39s;color:#e30613}
+.intro-tiles{list-style:none;display:flex;gap:14px;justify-content:center;margin:26px 0 0;padding:0}
+.intro-tiles li{width:clamp(56px,8.5vw,124px);aspect-ratio:4/3;border-radius:14px;overflow:hidden;
+  background:#e9e7e1;box-shadow:0 16px 34px rgba(21,24,28,.18),0 0 0 3px #fff;
+  animation:introTile .7s cubic-bezier(.16,.84,.28,1) both}
+.intro-tiles li:nth-child(1){animation-delay:.6s}
+.intro-tiles li:nth-child(2){animation-delay:.72s}
+.intro-tiles li:nth-child(3){animation-delay:.84s}
+.intro-tiles li:nth-child(4){animation-delay:.96s}
+.intro-tiles li:nth-child(5){animation-delay:1.08s}
+.intro-tiles img{display:block;width:100%;height:100%;object-fit:cover}
 .intro-bar{width:min(320px,62vw);height:3px;border-radius:2px;background:rgba(21,24,28,.12);
-  margin:24px auto 0;overflow:hidden}
-.intro-bar span{display:block;height:100%;width:0;background:#e30613;animation:introBar 2.2s linear .25s forwards}
+  margin:26px auto 0;overflow:hidden}
+.intro-bar span{display:block;height:100%;width:0;background:#e30613;animation:introBar 2.6s linear .3s forwards}
 .intro-skip{position:absolute;right:22px;bottom:20px;font:inherit;font-size:.85rem;cursor:pointer;
   background:rgba(255,255,255,.92);color:#15181c;border:1px solid rgba(21,24,28,.18);border-radius:999px;
   padding:9px 18px;box-shadow:0 6px 18px rgba(21,24,28,.08)}
@@ -391,8 +406,14 @@ textarea{resize:vertical;min-height:120px}
 @keyframes introLogo{from{opacity:0;transform:translateY(16px) scale(.92)}to{opacity:1;transform:none}}
 @keyframes introShine{from{left:-45%}to{left:120%}}
 @keyframes introWord{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
-@keyframes introHalo{from{opacity:0;transform:scale(.7)}60%{opacity:1}to{opacity:1;transform:scale(1)}}
+@keyframes introTile{from{opacity:0;transform:translateY(22px) scale(.9)}to{opacity:1;transform:none}}
+@keyframes introHalo{from{opacity:0;transform:scale(.72)}55%{opacity:1}to{opacity:.85;transform:scale(1.06)}}
+@keyframes introGrid{from{opacity:0}45%{opacity:.06}to{opacity:.06}}
 @keyframes introBar{to{width:100%}}
 @keyframes introOut{to{opacity:0;visibility:hidden}}
 @media (prefers-reduced-motion:reduce){.site-intro{display:none}}
-@media (max-width:660px){.intro-skip{right:14px;bottom:14px}.intro-logo{padding:14px 18px;border-radius:16px}}
+@media (max-width:640px){
+  .intro-tiles{gap:9px;margin-top:20px}
+  .intro-logo{padding:14px 18px;border-radius:16px}
+  .intro-skip{right:14px;bottom:14px}
+}

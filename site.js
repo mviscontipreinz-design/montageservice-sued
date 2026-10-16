@@ -191,7 +191,7 @@
       if (skipButton) skipButton.addEventListener('click', function (e) { e.stopPropagation(); closeIntro(); });
       intro.addEventListener('click', closeIntro);
       document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeIntro(); });
-      window.setTimeout(closeIntro, 3000);
+      window.setTimeout(closeIntro, 3600);
     }
   }
 
