@@ -324,3 +324,37 @@ textarea{resize:vertical;min-height:120px}
   .cards,.cards.four,.photos,.steps,.form,.footer-main{grid-template-columns:1fr}
   .brand img{width:152px}
 }
+
+/* ---------- Werbefilm ---------- */
+.video-frame{margin:0 auto;max-width:1080px;background:#0d1014;border:1px solid var(--line);
+  border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow)}
+.video-frame video{display:block;width:100%;height:auto;aspect-ratio:16/9;background:#0d1014}
+.video-frame a{color:#fff}
+
+/* ---------- Zusätzliche Anpassung an Tablet und Handy ---------- */
+.form .form-status.error{background:#fdecec;color:#a1140f}
+.form button[disabled]{opacity:.65;cursor:progress}
+@media (max-width:1080px){
+  .video-frame{max-width:100%}
+  .contact-grid{gap:22px}
+}
+@media (max-width:960px){
+  .section{padding:clamp(44px,6vw,72px) 0}
+  .section-head{max-width:100%}
+  .form-card{padding:26px}
+  .contact-info{padding:28px}
+  .video-frame{border-radius:20px}
+}
+@media (max-width:660px){
+  .form-card{padding:20px}
+  .contact-info{padding:22px}
+  .form-status{padding:14px}
+  .video-frame{border-radius:16px}
+  .hero-actions{width:100%}
+  .hero-actions .button{width:100%;justify-content:center}
+}
+@media (max-width:420px){
+  .form-card{padding:16px}
+  .card{padding:22px}
+  .video-frame{border-radius:12px}
+}

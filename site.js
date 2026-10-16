@@ -1,4 +1,4 @@
-/* Montageservice Süd – Prototyp
+/* Montageservice Süd – Website
    Navigation, Scroll-Reveal, FAQ, Formularprüfung */
 
 (function () {
@@ -64,10 +64,12 @@
     }
   }
 
-  /* ---------- Formularprüfung (Prototyp, ohne Versand) ---------- */
-  var form = document.querySelector('form[data-prototype-form]');
+  /* ---------- Formular: Prüfung und echter Versand ---------- */
+  var form = document.querySelector('form[data-contact-form]');
   if (form) {
     var status = form.querySelector('.form-status');
+    var submit = form.querySelector('button[type="submit"]');
+    var sending = false;
 
     var validateField = function (input) {
       var field = input.closest('.field');
@@ -84,6 +86,14 @@
       return ok;
     };
 
+    var showStatus = function (message, isError) {
+      if (!status) return;
+      status.textContent = message;
+      status.classList.add('visible');
+      status.classList.toggle('error', !!isError);
+      status.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    };
+
     form.addEventListener('input', function (e) {
       if (e.target.matches('input,select,textarea')) validateField(e.target);
     });
@@ -93,6 +103,8 @@
 
     form.addEventListener('submit', function (e) {
       e.preventDefault();
+      if (sending) return;
+
       var fields = form.querySelectorAll('input,select,textarea');
       var firstInvalid = null;
       fields.forEach(function (input) {
@@ -102,17 +114,60 @@
 
       if (firstInvalid) {
         firstInvalid.focus();
-        if (status) status.classList.remove('visible');
+        showStatus('Bitte prüfen Sie die markierten Felder.', true);
         return;
       }
 
-      if (status) {
-        status.textContent = 'Danke! Im Prototyp wird nichts versendet – im Livebetrieb geht die Anfrage jetzt an Montageservice Süd.';
-        status.classList.add('visible');
-        status.scrollIntoView({ behavior: 'smooth', block: 'center' });
-      }
-      form.reset();
-      form.querySelectorAll('.field.invalid').forEach(function (f) { f.classList.remove('invalid'); });
+      var payload = {
+        _subject: 'Anfrage über die Website – Montageservice Süd',
+        _template: 'table',
+        _captcha: 'false',
+        _url: window.location.href.split('#')[0]
+      };
+      fields.forEach(function (input) {
+        if (input.type === 'hidden' || !input.name) return;
+        payload[input.name] = input.type === 'checkbox' ? (input.checked ? 'Ja' : 'Nein') : input.value;
+      });
+
+      sending = true;
+      if (submit) { submit.disabled = true; }
+      showStatus('Ihre Anfrage wird gesendet …', false);
+
+      fetch('https://formsubmit.co/ajax/info@montageservice-sued.de', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify(payload)
+      }).then(function (response) {
+        return response.json().catch(function () { return {}; }).then(function (data) {
+          var ok = response.ok && String(data.success) !== 'false';
+          if (!ok) throw new Error(data.message || ('HTTP ' + response.status));
+          return data;
+        });
+      }).then(function () {
+        showStatus('Vielen Dank! Ihre Anfrage ist bei uns eingegangen. Wir melden uns in der Regel innerhalb von 24 Stunden an Werktagen.', false);
+        form.reset();
+        form.querySelectorAll('.field.invalid').forEach(function (field) { field.classList.remove('invalid'); });
+      }).catch(function () {
+        var lines = [];
+        Object.keys(payload).forEach(function (key) {
+          if (key.charAt(0) === '_') return;
+          lines.push(key + ': ' + payload[key]);
+        });
+        var mail = 'mailto:info@montageservice-sued.de'
+          + '?subject=' + encodeURIComponent('Anfrage über die Website – Montageservice Süd')
+          + '&body=' + encodeURIComponent(lines.join('\n'));
+        if (status) {
+          status.classList.add('visible');
+          status.classList.add('error');
+          status.innerHTML = 'Das Senden hat nicht funktioniert. Bitte rufen Sie uns an unter '
+            + '<a href="tel:+4915773806320">01577 3806320</a> oder '
+            + '<a href="' + mail + '">senden Sie Ihre Anfrage per E-Mail</a> – Ihre Eingaben sind dort schon eingetragen.';
+          status.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+      }).then(function () {
+        sending = false;
+        if (submit) { submit.disabled = false; }
+      });
     });
   }
 
